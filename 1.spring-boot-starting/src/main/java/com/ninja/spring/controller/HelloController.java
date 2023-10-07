@@ -8,7 +8,7 @@ public class HelloController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "Hello from 10 hours long Spring Boot Master Class";
+		return "Hello from 10 hours long Spring Boot Master Class!";
 	}
 
 }
