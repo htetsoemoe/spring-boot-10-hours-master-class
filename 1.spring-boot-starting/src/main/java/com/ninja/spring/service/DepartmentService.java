@@ -9,5 +9,9 @@ public interface DepartmentService {
 	public Department saveDepartment(Department department);
 	
 	public List<Department> getAllDepartments();
+	
+	public Department getDepartmentById(Long departmentId);
+	
+	public void deleteDepartmentById(Long departmentId);
 
 }
