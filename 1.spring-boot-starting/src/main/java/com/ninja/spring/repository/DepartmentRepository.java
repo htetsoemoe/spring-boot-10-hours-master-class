@@ -8,4 +8,8 @@ import com.ninja.spring.entity.Department;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long>{
 
+	// Using JPA Naming Rules
+	public Department findByDepartmentName(String departmentName);
+	
+	public Department findByDepartmentNameIgnoreCase(String departmentName);
 }
