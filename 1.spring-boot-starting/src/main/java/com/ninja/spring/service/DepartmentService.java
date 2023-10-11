@@ -3,6 +3,7 @@ package com.ninja.spring.service;
 import java.util.List;
 
 import com.ninja.spring.entity.Department;
+import com.ninja.spring.error.DepartmentNotFoundException;
 
 public interface DepartmentService {
 	
@@ -10,7 +11,7 @@ public interface DepartmentService {
 	
 	public List<Department> getAllDepartments();
 	
-	public Department getDepartmentById(Long departmentId);
+	public Department getDepartmentById(Long departmentId) throws DepartmentNotFoundException;
 	
 	public void deleteDepartmentById(Long departmentId);
 	
