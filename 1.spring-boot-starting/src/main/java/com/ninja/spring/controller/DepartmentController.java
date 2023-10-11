@@ -2,6 +2,8 @@ package com.ninja.spring.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,20 +17,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ninja.spring.entity.Department;
 import com.ninja.spring.service.DepartmentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/")
 public class DepartmentController {
 	
 	@Autowired
 	private DepartmentService departmentService;
+	
+	private final Logger logger = LoggerFactory.getLogger(DepartmentController.class);
 
 	@PostMapping("departments")
-	public Department saveDepartment(@RequestBody Department department) {
+	public Department saveDepartment(@RequestBody @Valid Department department) {
+		logger.info("invoked saveDepartment endpoint");
 		return departmentService.saveDepartment(department);
 	}
 	
 	@GetMapping("departments")
 	public List<Department> getAllDepartments() {
+		logger.info("invoked getAllDepartments endpoint");
 		return departmentService.getAllDepartments();
 	}
 
