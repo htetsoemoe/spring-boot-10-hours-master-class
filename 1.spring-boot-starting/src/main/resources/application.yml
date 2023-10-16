@@ -1,16 +1,31 @@
-app:
-    message: Hello from 10 hours long Spring Boot Master Class!
+#app:
+#    message: Hello from 10 hours long Spring Boot Master Class!
     
-spring:
-    datasource:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        password: admin
-        url: jdbc:mysql://localhost:3306/dcbapp
-        username: root
-    jpa:
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                format_sql: true
-        show-sql: true
+
+#spring:
+#  config:
+#    activate:
+#      on-profile:
+#      - dev
+#
+#---
+#
+#spring:
+#  config:
+#    activate:
+#      on-profile:
+#      - dev
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    password: admin
+#    url: jdbc:mysql://localhost:3306/dcbapp
+#    username: root
+#    jpa:
+#        hibernate:
+#            ddl-auto: update
+#        properties:
+#            hibernate:
+#                format_sql: true
+#        show-sql: true
+
+
