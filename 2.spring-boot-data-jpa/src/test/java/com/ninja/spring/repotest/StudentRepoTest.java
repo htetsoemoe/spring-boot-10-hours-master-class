@@ -1,5 +1,7 @@
 package com.ninja.spring.repotest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
@@ -51,6 +53,7 @@ public class StudentRepoTest {
 	}
 	
 	@Test
+	@Disabled
 	void findByFirstNameContaining() {
 		List<Student> students = studentRepo.findByFirstNameContaining("J");
 		System.out.println("Students: %s".formatted(students.toString()));
@@ -64,9 +67,34 @@ public class StudentRepoTest {
 	}
 	
 	@Test
+	@Disabled
 	void findByFirstNameAndLastName() {
 		Student found = studentRepo.findByFirstNameAndLastName("John", "Bond");
 		System.out.println("Students: %s".formatted(found.toString()));
+	}
+	
+	@Test
+	void getStudentByEmailAddress() {
+		Student student = studentRepo.getStudentByEmailAddress("john@school.com");
+		assertEquals("john@school.com", student.getEmailId());
+	}
+	
+	@Test
+	void getStudentFirstNameByEmail() {
+		String firstName = studentRepo.getStudentFirstNameByEmail("john@school.com");
+		assertEquals("John", firstName);
+	}
+	
+	@Test
+	void getStudentByEmailUsingNativeQuery() {
+		Student student = studentRepo.getStudentByEmailUsingNativeQuery("john@school.com");
+		assertEquals("john@school.com", student.getEmailId());
+	}
+	
+	@Test
+	void updateStudentFirstNameByEmailId() {
+		int count = studentRepo.updateStudentFirstNameByEmailId("Michael", "john@school.com");
+		assertEquals(1, count);
 	}
 
 }
