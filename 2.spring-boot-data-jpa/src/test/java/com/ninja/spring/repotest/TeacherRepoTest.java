@@ -2,6 +2,7 @@ package com.ninja.spring.repotest;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,7 @@ public class TeacherRepoTest {
 	private TeacherRepository teacherRepository;
 	
 	@Test
+	@Disabled
 	public void saveTeacher() {
 			
 		Course courseJava = Course.builder()
@@ -32,7 +34,7 @@ public class TeacherRepoTest {
 		Teacher teacher = Teacher.builder()
 				.firstName("Ko")
 				.lastName("Htet")
-				.courses(List.of(courseJava, courseDBA))
+				//.courses(List.of(courseJava, courseDBA))
 				.build();
 		
 		teacherRepository.save(teacher);

@@ -36,6 +36,7 @@ public class Teacher {
 	private String firstName;
 	private String lastName;
 	
+	/*
 	@OneToMany(
 			cascade = CascadeType.ALL
 	)
@@ -44,5 +45,6 @@ public class Teacher {
 			referencedColumnName = "teacherId"
 	)
 	private List<Course> courses;
+	*/
 
 }
