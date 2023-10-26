@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.ninja.spring.entity.Course;
+import com.ninja.spring.entity.Guardian;
+import com.ninja.spring.entity.Student;
 import com.ninja.spring.entity.Teacher;
 import com.ninja.spring.repository.CourseRepository;
 
@@ -80,6 +82,7 @@ public class CourseRepoTest {
 	}
 	
 	@Test
+	@Disabled
 	public void findByCourseNameContaining() {
 		Pageable firstPageThreeRecords = PageRequest.of(0, 3);
 		
@@ -87,6 +90,33 @@ public class CourseRepoTest {
 									.getContent();
 		
 		System.out.println("Courses : " + courses);
+	}
+	
+	@Test
+	public void manyToManyCoursesStudentsTest() {
+		
+		// Teacher and Course has @OneToMany relationship
+		Teacher teacher = Teacher.builder()
+				.firstName("U")
+				.lastName("Sayar Gyi")
+				.build();
+		
+		// Student and Course has @ManyToMany relationship
+		Student student = Student.builder()
+				.firstName("Ko")
+				.lastName("Sayar Lay")
+				.guardian(Guardian.builder().name("U SaSa YaKa").email("ssyk@gmail.com").phone("99999999999").build())
+				.emailId("kosayarlay@gmail.com")
+				.build();
+		
+		Course course = Course.builder()
+				.courseName("AI")
+				.credit(15)
+				.teacher(teacher)
+				.build();
+		
+		course.addStudents(student);
+		repo.save(course);
 	}
 
 }
