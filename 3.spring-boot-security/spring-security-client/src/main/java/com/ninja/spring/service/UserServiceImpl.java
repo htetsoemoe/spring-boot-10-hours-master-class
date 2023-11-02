@@ -1,5 +1,7 @@
 package com.ninja.spring.service;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,30 @@ public class UserServiceImpl implements UserService{
 	public void saveVerificationTokenForUser(String token, User user) {
 		VerificationToken verificationToken = new VerificationToken(user, token);
 		verificationTokenRepository.save(verificationToken);
+	}
+
+	@Override
+	public String validateVerificationToken(String token) {
+		VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
+		
+		if (verificationToken == null) {
+			return "invalid";
+		}
+		
+		// OneToOne relationship with User and Token
+		User user = verificationToken.getUser();
+		Calendar calendar = Calendar.getInstance();
+		
+		if ((verificationToken.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0) {
+			verificationTokenRepository.delete(verificationToken);
+			return "expired";
+		}
+		
+		// If 'verificationToken' is still valid, registered user need to enable state to 'true'
+		user.setEnabled(true);
+		userRepository.save(user);
+		
+		return "valid";
 	}
 
 }

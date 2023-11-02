@@ -8,4 +8,6 @@ import com.ninja.spring.entity.VerificationToken;
 @Repository
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken, Long>{
 
+	VerificationToken findByToken(String token);
+
 }
